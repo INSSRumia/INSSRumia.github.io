@@ -42,7 +42,7 @@
         <script src="https://fastly.jsdelivr.net/gh/INSSRumia/live2d-widget@latest/autoload.js"></script>
 
         <style>
-            .musicController{
+            .musicFrame{
             position: fixed;
             right: 0;
             bottom: 0;
@@ -196,10 +196,8 @@
         <script src="/js/music.min.js"></script>
         </audio>
         -->
-
-        <audio controls class = "musicController">
-        <source src="/music/GONTITI - 1967.mp3" type="audio/mpeg">
-        </audio>
+        <!--为音乐播放器创建框架用于播放音乐-->
+        <iframe src="/html/MusicFrame.html" width="600" height="80" class="musicFrame"></iframe>
 
     </body>
 </html>
