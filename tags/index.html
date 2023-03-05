@@ -40,13 +40,13 @@
         
         <!--为网页添加live2d-->
         <script src="https://fastly.jsdelivr.net/gh/INSSRumia/live2d-widget@latest/autoload.js"></script>
-
+        
         <style>
-            .musicFrame{
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            }
+        .musicController{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        }
         </style>
 
     <meta name="generator" content="Hexo 6.3.0"></head>
@@ -188,16 +188,10 @@
 <script src="/js/particlex.js"></script>
 
 
-
-        <!--为网页添加背景音乐
-        <audio id="bg-music" loop autoplay="">
+        
+        <audio controls class = "musicController" loop autoplay="true">
         <source src="/music/GONTITI - 1967.mp3" type="audio/mpeg">
-        <button id="play-btn">播放音乐</button>
-        <script src="/js/music.min.js"></script>
         </audio>
-        -->
-        <!--为音乐播放器创建框架用于播放音乐-->
-        <iframe src="/html/MusicFrame.html" width="600" height="80" class="musicFrame"></iframe>
 
     </body>
 </html>
