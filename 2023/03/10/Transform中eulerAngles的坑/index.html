@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>Archives | INSS 小车车</title>
+    <title>Transform中eulerAngles的坑 | INSS 小车车</title>
     <meta name="author" content="INSSRumia/没有⑩怎么学数学" />
     <meta name="description" content="我的小车车！" />
     <meta name="keywords" content="" />
@@ -34,7 +34,9 @@
 
 
 
-<script src="/js/lib/search.js"></script>
+
+
+
 
 
 
@@ -167,96 +169,69 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Transform中eulerAngles的坑</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/3/10
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
             
-<div id="archives">
-    
-    <input id="search-bar" class="input" placeholder="搜索" v-model="rawSearch" />
-    
-    <div id="timeline-wrap" ref="timeline">
-        
-        <div class="timeline" data-title="网站终于搭建好了，纪念一下">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/5</div>
-                <a href="/2023/03/05/%E7%BD%91%E7%AB%99%E7%BB%88%E4%BA%8E%E6%90%AD%E5%BB%BA%E5%A5%BD%E4%BA%86%EF%BC%8C%E7%BA%AA%E5%BF%B5%E4%B8%80%E4%B8%8B/">
-                    <h3>网站终于搭建好了，纪念一下</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/%E7%BA%AA%E5%BF%B5/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            纪念
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/Hexo/" style="color: #00a596">Hexo</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/Github/" style="color: #ffa2c4">Github</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="transform中eulerangles的坑">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/10</div>
-                <a href="/2023/03/10/Transform%E4%B8%ADeulerAngles%E7%9A%84%E5%9D%91/">
-                    <h3>Transform中eulerAngles的坑</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/%E6%95%99%E7%A8%8B/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            教程
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E6%8E%92%E9%9B%B7%E5%B0%8F%E8%B4%B4%E5%A3%AB/" style="color: #00bcd4">排雷小贴士</a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
+            
+            <span class="tag">
+                
+                <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%8E%92%E9%9B%B7%E5%B0%8F%E8%B4%B4%E5%A3%AB/" style="color: #00a596">排雷小贴士</a>
+            </span>
+            
+        </span>
         
     </div>
+    
+    <div class="content" v-pre>
+        <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>先说结论：在读取Transform中的eulerAngles时，x坐标的范围是0°~90°和270°~360°。而y和z坐标的范围则是正常的0°~360°。</p>
+<p>x坐标范围如图所示：</p>
+<!--![](Transform中eulerAngles的坑/1.png)-->
+<p><img src="/2023/03/10/Transform%E4%B8%ADeulerAngles%E7%9A%84%E5%9D%91/1.png"></p>
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>在官方文档中可以很轻松地找到问题的答案：</p>
+<blockquote><p>欧拉角可以通过围绕各个轴执行三个单独的旋转来表示三维旋转。在 Unity 中，围绕 Z 轴、X 轴和 Y 轴（按该顺序）执行这些旋转。</p>
+<p>可以通过设置此属性来设置四元数的旋转，并且可以通过读取此属性来读取欧拉角的值。</p>
+<p>使用 .eulerAngles 属性设置旋转时，务必要了解，虽然提供 X、Y 和 Z 旋转值描述旋转，但是这些值不存储在旋转中。而是将 X、Y 和 Z 值转换为四元数的内部格式。</p>
+<p>读取 .eulerAngles 属性时，Unity 将四元数的内部旋转表示形式转换为欧拉角。因为可通过多种方式使用欧拉角表示任何给定旋转，所以读出的值可能与分配的值截然不同。如果尝试逐渐增加值以生成动画，则这种情况可能会导致混淆。</p>
+<footer><strong>Unity Documentation</strong><cite><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/current/ScriptReference/Transform-eulerAngles.html">Transform.eulerAngles</a></cite></footer></blockquote>
+<p>简而言之，造成这个问题的原因是因为Transform中的eulerAngles属性是通过四元数生成的。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
 </div>
 
             <footer id="footer">
@@ -287,6 +262,12 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+
+
+
+
     
 
     <!--为网页添加背景音乐-->
