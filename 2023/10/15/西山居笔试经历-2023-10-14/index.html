@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>西山居笔试经历(2023.10.14) | INSS 小车车</title>
+    <meta name="author" content="INSSRumia/没有⑩怎么学数学" />
+    <meta name="description" content="我的小车车！" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/avatar_1.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+    <!--为网页添加背景-->
+    <canvas
+        id="background"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+    ></canvas>
+    <script src="/js/background.min.js"></script>
+
+    <!--修改鼠标样式-->
+    <div id="cursor"></div>
+    <link rel="stylesheet" href="/css/cursor.min.css" />
+    <script src="/js/cursor.min.js"></script>
+
+    <!--为网页添加背景音乐的格式-->
+    <style>
+        .musicController{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        }
+    </style>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>INSS 小车车</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;INSS 小车车</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>西山居笔试经历(2023.10.14)</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/15
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%A7%8B%E6%8B%9B%E7%BB%8F%E5%8E%86/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                秋招经历
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/" style="color: #00a596">笔试面试</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E8%A5%BF%E5%B1%B1%E5%B1%85/" style="color: #00bcd4">西山居</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="考前准备"><a href="#考前准备" class="headerlink" title="考前准备"></a>考前准备</h1><p>在西山居的笔试之前，先经历了一次FunPlus的纯C++笔试，信心很受打击。再加上之前在牛客网上查过西山居的笔试，看见都是吐槽纯考C++的，在考试之前的心态已经摆烂了。。。在开始考试的时候完全是以<code>“让我看看这次的题目能有多难”</code>的看乐子心态去考的。</p>
+<p>实际上难度不高，考完很后悔为什么没有好好准备导致考试的时候浪费了不少时间。</p>
+<p><code>所以网络上的笔经面经要看，但不要完全相信他人对于难度的描述，谁知道该公司下一次笔试还和之前一样呢？</code></p>
+<h1 id="试卷总体评价"><a href="#试卷总体评价" class="headerlink" title="试卷总体评价"></a>试卷总体评价</h1><p>和FunPlus比起来简单太多了！(可能只是单纯因为我C++水平太烂)</p>
+<p>考试分为3种题型</p>
+<ul>
+<li>10道选择题<blockquote>
+<p>计网，计组，操作系统的内容不多，大概才2-3题，大部分是数据结构和看程序写结果。程序用C&#x2F;C++写的，但是个人感觉难度偏低。(其实还是要对C++有一定了解才能写出来)</p>
+</blockquote>
+</li>
+<li>2道填空题<blockquote>
+<p>第一题考察的是排序内容，第二题考察的是概率论（比较简单的）</p>
+</blockquote>
+</li>
+<li>3道编程题<blockquote>
+<p>可以用C#！ 只要是牛客网上能用的编程语言都可以用！具体难度我做不出评价，毕竟我只笔试过两家。</p>
+<p>一个建议：<code>请一定把你所用的编程语言中常用的数据结构及其函数记清楚</code></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="具体题目"><a href="#具体题目" class="headerlink" title="具体题目"></a>具体题目</h1><p>所有的题目我肯定是记不全的，只写一写我还记得的。</p>
+<h2 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h2><h3 id="1-一组元素入栈的顺序为abcdef，那么出栈的顺序不可能是"><a href="#1-一组元素入栈的顺序为abcdef，那么出栈的顺序不可能是" class="headerlink" title="1. 一组元素入栈的顺序为abcdef，那么出栈的顺序不可能是?"></a>1. 一组元素入栈的顺序为<code>abcdef</code>，那么出栈的顺序不可能是?</h3><blockquote>
+<p>很简单的题，就是把选项的出栈顺序一个个试一遍看看哪个不可能就好了。</p>
+<p>比如 <code>入 入 出 出 入 入 出 出 入 入 出 出</code> 那么出栈顺序就是 <code>badcfe</code></p>
+<p>但是我完全理解错题目了！以为<code>abcdef</code>是连着入栈的，根据我浅薄的知识判断出栈顺序只有可能是<code>fedcba</code>，看完题目直接懵了。只好乱选了一个。</p>
+</blockquote>
+<h3 id="2-有一个虚拟存储系统，若进程在内存中占3页-开始是内存为空-，若采用先进先出-FIFO-页面淘汰算法，当执行如下访问页面序列后，会发生多少次缺页？"><a href="#2-有一个虚拟存储系统，若进程在内存中占3页-开始是内存为空-，若采用先进先出-FIFO-页面淘汰算法，当执行如下访问页面序列后，会发生多少次缺页？" class="headerlink" title="2. 有一个虚拟存储系统，若进程在内存中占3页(开始是内存为空)，若采用先进先出(FIFO)页面淘汰算法，当执行如下访问页面序列后，会发生多少次缺页？"></a>2. 有一个虚拟存储系统，若进程在内存中占3页(开始是内存为空)，若采用先进先出(FIFO)页面淘汰算法，当执行如下访问页面序列后，会发生多少次缺页？</h3><h3 id="序列：1-2-3-4-5-1-2-5-1-2-3-4-5"><a href="#序列：1-2-3-4-5-1-2-5-1-2-3-4-5" class="headerlink" title="序列：1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5"></a>序列：<code>1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5</code></h3><blockquote>
+<p>内存大小为3，使用FIFO淘汰算法，开始内存为空。</p>
+<p>前面五次由于都是第一次调用的页面，所以坑定会发生缺页，前5次调用完，缺页5次，内存中为<code>3, 4, 5</code></p>
+<p>再接下来2次，访问1和2，但是内存中已经不存在1,2了。也会发生缺页，缺页7次，内存中为<code>5, 1, 2</code></p>
+<p>再接下来访问<code>5, 1, 2</code>，由于内存中存在5,1,2，不发生缺页。</p>
+<p>最后是&#96;3, 4, 5’，会发生3次缺页，总计就是10次缺页。</p>
+</blockquote>
+<h3 id="3-看程序写结果："><a href="#3-看程序写结果：" class="headerlink" title="3. 看程序写结果："></a>3. 看程序写结果：</h3><pre><code class="C++">#include &lt;iostream&gt;
+using namespace std;
+void Fun1(int a)&#123;
+    a++;
+&#125;
+void Fun2(int* a)&#123;
+    a++;
+&#125;
+int main()&#123;
+    int abc = 100, xyz = 13;
+    Fun1(abc);
+    abc = xyz;
+    Fun2(&amp;xyz);
+    cout&lt;&lt;abc;
+    return 0;
+&#125;
+</code></pre>
+<blockquote>
+<p>程序应该是这样，写的不一定对。反正就是考察指针的基础知识。如果我程序没写错答案就是13</p>
+</blockquote>
+<h3 id="4-请问以下程序一共输出了几次”-“"><a href="#4-请问以下程序一共输出了几次”-“" class="headerlink" title="4. 请问以下程序一共输出了几次”-“?"></a>4. 请问以下程序一共输出了几次”-“?</h3><pre><code class="C">int main()&#123;
+    for(int i = 0; i &lt; 2; i++)&#123;
+        fork();
+        printf(&quot;-&quot;);
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<blockquote>
+<p>fork()函数会创建和当前完全一样的子进程，也就是会把程序一分为二，同时这个fork函数还写在for循环里。也就是子进程还会被分割成2个子进程。<del>二叉树，嘿嘿，二叉树</del> 看起来就像一个满二叉树，问你一个深度为2的满二叉树有几个节点。(其实这题就2层根本不用这样理解)</p>
+</blockquote>
+<blockquote>
+<p>如果我程序没写错，且我理解的没错的话，答案应该是7</p>
+</blockquote>
+<p>选择题我就只记得上面这些了，不过接下来的题我差不多都记得。</p>
+<h2 id="填空题"><a href="#填空题" class="headerlink" title="填空题"></a>填空题</h2><h3 id="1-adfbgce-要经过-次两两交换可以变成-abcdefg。任意顺序排列的abcdefg最少要-次两两交换才能还原，最多要-次。"><a href="#1-adfbgce-要经过-次两两交换可以变成-abcdefg。任意顺序排列的abcdefg最少要-次两两交换才能还原，最多要-次。" class="headerlink" title="1. adfbgce 要经过____次两两交换可以变成 abcdefg。任意顺序排列的abcdefg最少要____次两两交换才能还原，最多要____次。"></a>1. <code>adfbgce</code> 要经过____次两两交换可以变成 <code>abcdefg</code>。任意顺序排列的<code>abcdefg</code>最少要____次两两交换才能还原，最多要____次。</h3><blockquote>
+<p>这题其实我不会，排序的知识我没有！</p>
+</blockquote>
+<img src="/2023/10/15/西山居笔试经历-2023-10-14/1.jpg" width="300">
+
+
+<blockquote>
+<p>第一个空应该就是3次</p>
+<p>这题后两个空我没太读懂是什么意思，最少要几次两两交换？</p>
+<p>abcdefg的话0次不用交换</p>
+<p>交换排序最差的情况至少要6次</p>
+<p>我不知道题目问的是上面的哪一种情况。</p>
+<p>最多的话，应该是gfedcba然后冒泡排序吧） 那就是21次。</p>
+</blockquote>
+<h3 id="2-两个骰子，同时掷出，两者之和为7的概率是"><a href="#2-两个骰子，同时掷出，两者之和为7的概率是" class="headerlink" title="2. 两个骰子，同时掷出，两者之和为7的概率是____"></a>2. 两个骰子，同时掷出，两者之和为7的概率是____</h3><h3 id="有一种特殊的骰子，掷出6的概率是50-，掷出其他的概率都是10-同时掷出，两者之和为7的概率是"><a href="#有一种特殊的骰子，掷出6的概率是50-，掷出其他的概率都是10-同时掷出，两者之和为7的概率是" class="headerlink" title="有一种特殊的骰子，掷出6的概率是50%，掷出其他的概率都是10%,同时掷出，两者之和为7的概率是____"></a>有一种特殊的骰子，掷出6的概率是50%，掷出其他的概率都是10%,同时掷出，两者之和为7的概率是____</h3><blockquote>
+<p>是简单的概率论，两个骰子相互独立</p>
+<p>相加为7的情况有 1,6__2,5__3,4__4,3__5,2,__6,1 每种情况的概率是1&#x2F;36。六种情况加起来就是1&#x2F;6</p>
+<p>第二空也一样，只不过带6的情况概率是1&#x2F;20，其他情况概率是1&#x2F;100，六种加起来就是7&#x2F;50</p>
+</blockquote>
+<h2 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h2><p>编程题不能用IDE，但是可以用所有牛客网支持的语言。是核心代码模式，不是ACM。</p>
+<hr>
+<h3 id="1-给定一组面试时间，每个面试时间分为开始时间和结束时间，每场面试需要2位面试官，面试官不需要休息，面试不可中断。请计算一共需要多少个面试官。"><a href="#1-给定一组面试时间，每个面试时间分为开始时间和结束时间，每场面试需要2位面试官，面试官不需要休息，面试不可中断。请计算一共需要多少个面试官。" class="headerlink" title="1. 给定一组面试时间，每个面试时间分为开始时间和结束时间，每场面试需要2位面试官，面试官不需要休息，面试不可中断。请计算一共需要多少个面试官。"></a>1. 给定一组<code>面试时间</code>，每个<code>面试时间</code>分为<code>开始时间</code>和<code>结束时间</code>，每场面试需要<code>2</code>位面试官，面试官不需要休息，面试不可中断。请计算一共需要多少个面试官。</h3><blockquote>
+<p>我个人的解法是将<code>开始时间</code>和<code>结束时间</code>分别装进两个数组里再排序。应该可以用优先队列，但是我死活记不起来优先队列是怎么拼的。<del>没有IDE我就是个纯废物</del></p>
+</blockquote>
+<blockquote>
+<p>排序之后就很容易写了，以下是C#的核心代码</p>
+</blockquote>
+<pre><code class="C#">//面试官总数
+int count = 0;
+//空闲的面试官
+int freeNum = 0;
+
+while(startQueue.Count &gt; 0)&#123;
+    if(startQueue.Peek() &lt; endQueue.Peek())&#123;
+        if(freeNum == 0)
+            count += 2;
+        else
+            freeNum -= 2;
+        startQueue.Dequeue();
+    &#125;else&#123;
+        while(startQueue.Peek() &gt;= endQueue.Peek())&#123;
+            freeNum += 2；
+            endQueue.Dequeue();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<hr>
+<h3 id="2-在一张无限大的中国象棋的棋盘的-0-0-点有一只马，给一个目标点的坐标，求到达该目标点，马最少要走几步。"><a href="#2-在一张无限大的中国象棋的棋盘的-0-0-点有一只马，给一个目标点的坐标，求到达该目标点，马最少要走几步。" class="headerlink" title="2. 在一张无限大的中国象棋的棋盘的(0,0)点有一只马，给一个目标点的坐标，求到达该目标点，马最少要走几步。"></a>2. 在一张无限大的中国象棋的棋盘的(0,0)点有一只马，给一个目标点的坐标，求到达该目标点，马最少要走几步。</h3><blockquote>
+<p>这题我没写出来，应该是要用到BFS和回溯来写，考试的时候没时间了。</p>
+</blockquote>
+<hr>
+<h3 id="3-王子救公主"><a href="#3-王子救公主" class="headerlink" title="3. 王子救公主"></a>3. 王子救公主</h3><blockquote>
+<p>敌人是强盗，给定一个数组，这个数组中存储了每一个强盗的力量。</p>
+<p>王子有两个属性，一个是体力，一个是体力增长值。</p>
+<p>每天开始时，王子的体力会增加体力增长值的数值(体力 +&#x3D; 体力增长值)</p>
+<p>王子有两个选项，打强盗和休息。</p>
+<p>王子只能打力量不大于王子体力的强盗(体力 &gt;&#x3D; 强盗力量)</p>
+<p>击败强盗后，王子的体力清零，体力增长值 + 1</p>
+<p>王子休息后，当天体力保留到第二天。</p>
+<p>求王子救出公主最少要几天。</p>
+</blockquote>
+<blockquote>
+<p>我直接贪心写只过了90%。</p>
+<p>我的思路是每次王子都去打当前体力值能击败的最强的强盗。</p>
+<p>看牛客网上有大佬说用动态规划或者二进制枚举写。<a target="_blank" rel="noopener" href="https://www.nowcoder.com/feed/main/detail/916b2d46b03548adaa702998c0dcc800">链接在这</a></p>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 INSS 小车车
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;INSSRumia/没有⑩怎么学数学
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+
+    <!--为网页添加背景音乐-->
+    <audio controls class = "musicController" loop autoplay="true">
+    <source src="/music/GONTITI - 1967.mp3" type="audio/mpeg">
+    </audio>
+</body>
+</html>
