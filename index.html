@@ -188,6 +188,60 @@
         
 
 <div class="post">
+    <a href="/2023/10/21/%E8%8B%B1%E9%9B%84%E4%BA%92%E5%A8%B1%E7%AC%94%E8%AF%95%E7%BB%8F%E5%8E%86-2023-10-20/">
+        <h2 class="post-title">英雄互娱笔试经历(2023.10.20)</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E7%A7%8B%E6%8B%9B%E7%BB%8F%E5%8E%86/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                秋招经历
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/21
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>英雄互娱的笔试,平时乱杀的题，一笔试就写得稀烂。。。。。。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/" style="color: #03a9f4">笔试面试</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%8B%B1%E9%9B%84%E4%BA%92%E5%A8%B1/" style="color: #ff7d73">英雄互娱</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/21/%E8%8B%B1%E9%9B%84%E4%BA%92%E5%A8%B1%E7%AC%94%E8%AF%95%E7%BB%8F%E5%8E%86-2023-10-20/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2023/10/15/%E8%A5%BF%E5%B1%B1%E5%B1%85%E7%AC%94%E8%AF%95%E7%BB%8F%E5%8E%86-2023-10-14/">
         <h2 class="post-title">西山居笔试经历(2023.10.14)</h2>
     </a>
@@ -229,80 +283,16 @@
         
         <span class="tag">
             
-            <a href="/tags/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/" style="color: #03a9f4">笔试面试</a>
+            <a href="/tags/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/" style="color: #ff7d73">笔试面试</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E8%A5%BF%E5%B1%B1%E5%B1%85/" style="color: #ffa2c4">西山居</a>
+            <a href="/tags/%E8%A5%BF%E5%B1%B1%E5%B1%85/" style="color: #03a9f4">西山居</a>
         </span>
         
     </div>
     <a href="/2023/10/15/%E8%A5%BF%E5%B1%B1%E5%B1%85%E7%AC%94%E8%AF%95%E7%BB%8F%E5%8E%86-2023-10-14/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/03/10/Transform%E4%B8%ADeulerAngles%E7%9A%84%E5%9D%91/">
-        <h2 class="post-title">Transform中eulerAngles的坑</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/%E6%95%99%E7%A8%8B/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                教程
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/3/10
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>先说结论：在读取Transform中的eulerAngles时，x坐标的范围是0°~90°和270°~360°。而y和z坐标的范围则是正常的0°~360°。</p>
-<p>x坐标范围如图所示：</p>
-<!--![](Transform中eulerAngles的坑/1.png)-->
-<p><img src="/2023/03/10/Transform%E4%B8%ADeulerAngles%E7%9A%84%E5%9D%91/1.png"></p>
-<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>在官方文档中可以很轻松地找到问题的答案：</p>
-<blockquote><p>欧拉角可以通过围绕各个轴执行三个单独的旋转来表示三维旋转。在 Unity 中，围绕 Z 轴、X 轴和 Y 轴（按该顺序）执行这些旋转。</p>
-<p>可以通过设置此属性来设置四元数的旋转，并且可以通过读取此属性来读取欧拉角的值。</p>
-<p>使用 .eulerAngles 属性设置旋转时，务必要了解，虽然提供 X、Y 和 Z 旋转值描述旋转，但是这些值不存储在旋转中。而是将 X、Y 和 Z 值转换为四元数的内部格式。</p>
-<p>读取 .eulerAngles 属性时，Unity 将四元数的内部旋转表示形式转换为欧拉角。因为可通过多种方式使用欧拉角表示任何给定旋转，所以读出的值可能与分配的值截然不同。如果尝试逐渐增加值以生成动画，则这种情况可能会导致混淆。</p>
-<footer><strong>Unity Documentation</strong><cite><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/current/ScriptReference/Transform-eulerAngles.html">Transform.eulerAngles</a></cite></footer></blockquote>
-<p>简而言之，造成这个问题的原因是因为Transform中的eulerAngles属性是通过四元数生成的。</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%8E%92%E9%9B%B7%E5%B0%8F%E8%B4%B4%E5%A3%AB/" style="color: #ffa2c4">排雷小贴士</a>
-        </span>
-        
-    </div>
-    <a href="/2023/03/10/Transform%E4%B8%ADeulerAngles%E7%9A%84%E5%9D%91/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
@@ -346,12 +336,12 @@
         
         <span class="tag">
             
-            <a href="/tags/Hexo/" style="color: #00a596">Hexo</a>
+            <a href="/tags/Hexo/" style="color: #03a9f4">Hexo</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Github/" style="color: #ffa2c4">Github</a>
+            <a href="/tags/Github/" style="color: #ff7d73">Github</a>
         </span>
         
     </div>

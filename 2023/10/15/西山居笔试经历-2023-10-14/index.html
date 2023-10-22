@@ -199,12 +199,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/" style="color: #00a596">笔试面试</a>
+                <a href="/tags/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/" style="color: #ffa2c4">笔试面试</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E8%A5%BF%E5%B1%B1%E5%B1%85/" style="color: #00bcd4">西山居</a>
+                <a href="/tags/%E8%A5%BF%E5%B1%B1%E5%B1%85/" style="color: #00a596">西山居</a>
             </span>
             
         </span>
@@ -283,6 +283,7 @@ int main()&#123;
 <h2 id="填空题"><a href="#填空题" class="headerlink" title="填空题"></a>填空题</h2><h3 id="1-adfbgce-要经过-次两两交换可以变成-abcdefg。任意顺序排列的abcdefg最少要-次两两交换才能还原，最多要-次。"><a href="#1-adfbgce-要经过-次两两交换可以变成-abcdefg。任意顺序排列的abcdefg最少要-次两两交换才能还原，最多要-次。" class="headerlink" title="1. adfbgce 要经过____次两两交换可以变成 abcdefg。任意顺序排列的abcdefg最少要____次两两交换才能还原，最多要____次。"></a>1. <code>adfbgce</code> 要经过____次两两交换可以变成 <code>abcdefg</code>。任意顺序排列的<code>abcdefg</code>最少要____次两两交换才能还原，最多要____次。</h3><blockquote>
 <p>这题其实我不会，排序的知识我没有！</p>
 </blockquote>
+<!--<img src="西山居笔试经历-2023-10-14/1.jpg" width="300">-->
 <img src="/2023/10/15/西山居笔试经历-2023-10-14/1.jpg" width="300">
 
 
@@ -329,8 +330,142 @@ while(startQueue.Count &gt; 0)&#123;
 </code></pre>
 <hr>
 <h3 id="2-在一张无限大的中国象棋的棋盘的-0-0-点有一只马，给一个目标点的坐标，求到达该目标点，马最少要走几步。"><a href="#2-在一张无限大的中国象棋的棋盘的-0-0-点有一只马，给一个目标点的坐标，求到达该目标点，马最少要走几步。" class="headerlink" title="2. 在一张无限大的中国象棋的棋盘的(0,0)点有一只马，给一个目标点的坐标，求到达该目标点，马最少要走几步。"></a>2. 在一张无限大的中国象棋的棋盘的(0,0)点有一只马，给一个目标点的坐标，求到达该目标点，马最少要走几步。</h3><blockquote>
-<p>这题我没写出来，应该是要用到BFS和回溯来写，考试的时候没时间了。</p>
+<p>这题我没写出来，需要用BFS来写，但是考试的时候没时间了。</p>
 </blockquote>
+<blockquote>
+<p>马有8种行走的方向</p>
+</blockquote>
+<!--<img src="西山居笔试经历-2023-10-14/2.png" width="300">-->
+<img src="/2023/10/15/西山居笔试经历-2023-10-14/2.png" width="300">
+
+<blockquote>
+<p>如果直接用广度优先搜索的话，每个目标又可以衍生出8个目标，那么时间和空间复杂度都将会是O(8^n)。</p>
+<p>我不知道考试的时候直接广搜能不能过，但是我觉得还是要剪枝一下比较好。 我的剪枝思路如下：</p>
+</blockquote>
+<blockquote>
+<p>1.以马当前位置为原点，将周围分成四个象限。以逆时针来算，保持左开右闭的原则。</p>
+</blockquote>
+<!--<img src="西山居笔试经历-2023-10-14/3.jpg" width="300">-->
+<img src="/2023/10/15/西山居笔试经历-2023-10-14/3.jpg" width="300">
+
+<blockquote>
+<p>2.计算一下每个象限需要几个方向。</p>
+</blockquote>
+<blockquote>
+<p>拿第一象限举例：</p>
+<p>第一象限肯定要包含以下两个方向</p>
+</blockquote>
+<!--<img src="西山居笔试经历-2023-10-14/4.jpg" width="300">-->
+<img src="/2023/10/15/西山居笔试经历-2023-10-14/4.jpg" width="300">
+
+<blockquote>
+<p>以下两个方向也可能和第一象限有关(其实朝着右下角的那个方向也是可以忽略的，因为象限区间是左闭右开的)</p>
+</blockquote>
+<!--<img src="西山居笔试经历-2023-10-14/5.jpg" width="300">-->
+<img src="/2023/10/15/西山居笔试经历-2023-10-14/5.jpg" width="300">
+
+<blockquote>
+<p>也就是说，我们可以根据当前位置到目标的方向在哪一个象限，来确定我们要搜索的方向。<br>这样我们就消除了一半的广度。<br>分析完了，写代码就简单了。</p>
+</blockquote>
+<blockquote>
+<p>代码如下：</p>
+</blockquote>
+<pre><code class="C#">using System;
+using System.Collections.Generic;
+
+internal class Program &#123;
+    public static void Main() &#123;
+        Solution solution = new Solution();
+        string line = &quot;&quot;;
+        while((line = Console.ReadLine()) != null) &#123;
+            string[] tokens = line.Split(&#39; &#39;);
+            Console.Write(&quot;\n&quot;);
+            Console.WriteLine(solution.CalcPathLength( ( int.Parse( tokens[0] ), int.Parse( tokens[1] ) ) ) );
+            Console.Write(&quot;\n&quot;);
+        &#125;
+        Console.ReadKey();
+    &#125;
+&#125;
+
+public class Solution &#123;
+    //马的8个方向向量
+    List&lt;(int, int)&gt; direct = new List&lt;(int, int)&gt;()
+    &#123;
+        (2, 1),
+        (1, 2),
+        (-1, 2),
+        (-2, 1),
+        (-2, -1),
+        (-1, -2),
+        (1, -2),
+        (2, -1),
+    &#125;;
+
+    public int CalcPathLength((int, int) target)
+    &#123;
+        //记录路径长度
+        int length = 0;
+        //用来存储搜索目标的队列
+        Queue&lt;(int, int)&gt; bfsQ = new Queue&lt;(int, int)&gt;();
+        bfsQ.Enqueue((0, 0));
+
+        while(bfsQ.Count &gt; 0) &#123;
+            //表示是否找到目标的bool值
+            bool isFind = false;
+            //BFS模板
+            int count = bfsQ.Count;
+            while (count-- &gt; 0) &#123;
+                (int, int) curPos = bfsQ.Dequeue();
+                if(curPos.Item1 == target.Item1 &amp;&amp; curPos.Item2 == target.Item2) &#123;
+                    isFind = true;
+                    break;
+                &#125;
+
+                (int, int) curDirect = (target.Item1 - curPos.Item1, target.Item2 - curPos.Item2);
+                //将方向分为4个象限，保持左开右闭的原则
+                //第一象限
+                if (curDirect.Item1 &gt;= 0 &amp;&amp; curDirect.Item2 &gt; 0) &#123;
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[7]));
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[0]));
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[1]));
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[2]));
+                &#125;
+                //第二象限
+                else if (curDirect.Item1 &lt; 0 &amp;&amp; curDirect.Item2 &gt;= 0) &#123;
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[1]));
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[2]));
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[3]));
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[4]));
+                &#125;
+                //第三象限
+                else if (curDirect.Item1 &lt;= 0 &amp;&amp; curDirect.Item2 &lt; 0) &#123;
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[3]));
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[4]));
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[5]));
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[6]));
+                &#125;
+                //第四象限
+                else &#123;
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[5]));
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[6]));
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[7]));
+                    bfsQ.Enqueue(CalcNextPos(curPos, direct[0]));
+                &#125;
+            &#125;
+            //如果找到目标，直接break
+            if (isFind) break;
+            length++;
+        &#125;
+
+        return length;
+    &#125;
+
+    //计算马下一步走到的位置
+    private (int, int) CalcNextPos((int, int) curPos, (int, int) direct) &#123;
+        return (curPos.Item1 + direct.Item1,  curPos.Item2 + direct.Item2);
+    &#125;
+&#125;
+</code></pre>
 <hr>
 <h3 id="3-王子救公主"><a href="#3-王子救公主" class="headerlink" title="3. 王子救公主"></a>3. 王子救公主</h3><blockquote>
 <p>敌人是强盗，给定一个数组，这个数组中存储了每一个强盗的力量。</p>
