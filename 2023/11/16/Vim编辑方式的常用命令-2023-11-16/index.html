@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>Vim编辑方式的常用命令(2023.11.16) | INSS 小车车</title>
+    <meta name="author" content="INSSRumia/没有⑩怎么学数学" />
+    <meta name="description" content="我的小车车！" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/avatar_1.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+    <!--为网页添加背景-->
+    <canvas
+        id="background"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+    ></canvas>
+    <script src="/js/background.min.js"></script>
+
+    <!--修改鼠标样式-->
+    <div id="cursor"></div>
+    <link rel="stylesheet" href="/css/cursor.min.css" />
+    <script src="/js/cursor.min.js"></script>
+
+    <!--为网页添加背景音乐的格式-->
+    <style>
+        .musicController{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        }
+    </style>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>INSS 小车车</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;INSS 小车车</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Vim编辑方式的常用命令(2023.11.16)</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/16
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                知识分享
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/Vim/" style="color: #00a596">Vim</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p>Vim 中文帮助：<a target="_blank" rel="noopener" href="https://vimcdoc.sourceforge.net/doc/">https://vimcdoc.sourceforge.net/doc/</a></p>
+<p><a href="#0">前言</a></p>
+<p><a href="#1">Vim的模式</a></p>
+<p>-<a href="#1.1">普通模式</a></p>
+<h1 id = "0"> 前言 </h1>
+
+<p>本文只是个人在学习和使用Vim编辑方式的笔记，本人暂时没有深入使用过原生的Vim，以下所有内容都是在VSCode和VS的Vim插件下适用。</p>
+<h1 id = "1"> Vim的模式 </h1>
+
+<p>Vim分为4种模式，不同按键在不同模式下都用不同的功能，用户可以通过在不同模式之间切换来实现各种各样对文本的快捷操作。</p>
+<p>四种模式分别是：</p>
+<blockquote>
+<p>普通模式： –NORMAL–</p>
+<p>插入模式： –INSERT–</p>
+<p>可视模式： –VISUAL–</p>
+<p>命令模式： :</p>
+</blockquote>
+<h2 id = "1.1"> 普通模式 </h2>
+
+<p>普通模式是用户进行移动光标、复制、粘贴等操作的模式。</p>
+<h2 id = "1.2"> 插入模式 </h2>
+
+<p>插入模式是我们进行文字编辑的模式，当进入插入模式之后，<br>Vim的输入操作与普通文本编辑器基本无异。<br>但Vim仍提供了大量的命令来加快用户输入，<br>后文将会介绍部分个人常用的命令。</p>
+<h2 id = "1.3"> 可视模式 </h2>
+
+<p>该模式类似于使用鼠标进行拖选，当用户在普通模式按下<code>v</code>键后将进入可视模式，<br>将以用户进入可视模式时光标所在的位置为起始位置，<br>用户可通过移动光标可以将选择范围内的文本高亮。<br>用户可以对高亮后的文本进行操作，如复制、删除等。<br>可视模式下大部分操作与插入模式相同。</p>
+<h2 id = "1.4"> 命令模式 </h2>
+
+<p>命令模式下，用户可以输入一些命令来完成一些特殊的操作，如保存、退出、分割窗口等。</p>
+<h1 id = "2"> 普通模式常用命令 </h1>
+
+<h2 id = "2.1"> 普通模式进入插入模式 </h2>
+
+<p>我们用文本编辑器，最重要的就是要输入文字，vim编辑器中，输入文字需要在插入模式下进行，进入插入模式经常会用到以下命令。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>i</td>
+<td>在光标前插入</td>
+</tr>
+<tr>
+<td>a</td>
+<td>在光标后插入</td>
+</tr>
+<tr>
+<td>I</td>
+<td>在行首插入</td>
+</tr>
+<tr>
+<td>A</td>
+<td>在行末插入</td>
+</tr>
+<tr>
+<td>o</td>
+<td>在下一行插入</td>
+</tr>
+<tr>
+<td>O</td>
+<td>在上一行插入</td>
+</tr>
+<tr>
+<td>s</td>
+<td>删除当前光标所在字符并插入</td>
+</tr>
+<tr>
+<td>S</td>
+<td>删除当前当前行并插入</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id = "2.2"> 普通模式下移动光标 </h2>
+
+<p>使用鼠标和方向键来移动光标需要将右手移动很远的距离。<br>无疑这会降低我们的操作速度。<br>而vim就是来帮助我们脱离鼠标和方向键的。<br>我们可以使用以下命令来移动光标。</p>
+<h3 id = "2.2.1"> 方向键的替换者 </h3>
+
+<p>由于我们的右手一直放在<code>hjkl</code>的位置，因此使用<code>hjkl</code>作为新的方向键。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>h</td>
+<td>向左移动一个字符</td>
+</tr>
+<tr>
+<td>j</td>
+<td>向下移动一行</td>
+</tr>
+<tr>
+<td>k</td>
+<td>向上移动一行</td>
+</tr>
+<tr>
+<td>l</td>
+<td>向右移动一个字符</td>
+</tr>
+</tbody></table>
+<p><strong>在命令之前输入数字可以表示命令执行的次数。</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>n</code>h</td>
+<td>向左移动<code>n</code>个字符</td>
+</tr>
+<tr>
+<td><code>n</code>j</td>
+<td>向下移动<code>n</code>行</td>
+</tr>
+<tr>
+<td><code>n</code>k</td>
+<td>向上移动<code>n</code>行</td>
+</tr>
+<tr>
+<td><code>n</code>l</td>
+<td>向右移动<code>n</code>个字符</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id = "2.2.2"> 单词间移动 </h3>
+
+<p>首先要先理解vim中对于单词的定义。vim中有两种单词。</p>
+<blockquote>
+<p>word： 只包含字母，数字以及下划线<code>_</code>的字符串（连续的汉字算一个word，汉字word会被其他任何字符分开）</p>
+<p>WORD：不包含空格，制表符以及换行的字符串</p>
+</blockquote>
+<p><strong>同样，可以在以下命令开头加上数字表示命令重复的次数。</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>n</code>e</td>
+<td>将光标移动到其所在位置右边第<code>n</code>个word的末尾</td>
+</tr>
+<tr>
+<td><code>n</code>ge</td>
+<td>将光标移动到其所在位置左边第<code>n</code>个word的末尾</td>
+</tr>
+<tr>
+<td><code>n</code>b</td>
+<td>将光标移动到其所在位置左边第<code>n</code>个word的开头</td>
+</tr>
+<tr>
+<td><code>n</code>w</td>
+<td>将光标移动到其所在位置右边第<code>n</code>个word的开头</td>
+</tr>
+<tr>
+<td><code>n</code>E</td>
+<td>将光标移动到其所在位置右边第<code>n</code>个WORD的末尾</td>
+</tr>
+<tr>
+<td><code>n</code>gE</td>
+<td>将光标移动到其所在位置左边第<code>n</code>个WORD的末尾</td>
+</tr>
+<tr>
+<td><code>n</code>B</td>
+<td>将光标移动到其所在位置左边第<code>n</code>个WORD的开头</td>
+</tr>
+<tr>
+<td><code>n</code>W</td>
+<td>将光标移动到其所在位置右边第<code>n</code>个WORD的开头</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id = "2.2.3"> 行列移动 </h3>
+
+<p><strong>列移动</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>移动到当前行开头</td>
+</tr>
+<tr>
+<td>$</td>
+<td>移动到当前行末尾</td>
+</tr>
+<tr>
+<td>^</td>
+<td>移动到当前行第一个非空字符</td>
+</tr>
+<tr>
+<td>g_</td>
+<td>移动到当前行最后一个非空字符</td>
+</tr>
+<tr>
+<td><code>n</code>|</td>
+<td>移动到第<code>n</code>列</td>
+</tr>
+</tbody></table>
+<p><strong>行移动</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gg</td>
+<td>移动到首行</td>
+</tr>
+<tr>
+<td><code>n</code>gg</td>
+<td>移动到第<code>n</code>行</td>
+</tr>
+<tr>
+<td>G</td>
+<td>移动到尾行</td>
+</tr>
+<tr>
+<td>H</td>
+<td>移动到屏幕的第一行</td>
+</tr>
+<tr>
+<td><code>n</code>H</td>
+<td>移动到屏幕的第<code>n</code>行</td>
+</tr>
+<tr>
+<td>M</td>
+<td>移动到屏幕的中间行</td>
+</tr>
+<tr>
+<td>L</td>
+<td>移动到屏幕的最后一行</td>
+</tr>
+<tr>
+<td><code>n</code>L</td>
+<td>移动到屏幕的倒数第<code>n</code>行</td>
+</tr>
+</tbody></table>
+<h3 id = "2.2.4"> 移动到指定的字符 </h3>
+
+<p>下表中的a可以替换为任意字符。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>n</code>f<code>a</code></td>
+<td>将光标移动到其所在位置右边第<code>n</code>个<code>a</code></td>
+</tr>
+<tr>
+<td><code>n</code>F<code>a</code></td>
+<td>将光标移动到其所在位置左边第<code>n</code>个<code>a</code></td>
+</tr>
+<tr>
+<td><code>n</code>t<code>a</code></td>
+<td>将光标移动到其所在位置右边第<code>n</code>个<code>a</code>之前</td>
+</tr>
+<tr>
+<td><code>n</code>T<code>a</code></td>
+<td>将光标移动到其所在位置左边第<code>n</code>个<code>a</code>之前</td>
+</tr>
+<tr>
+<td>;</td>
+<td>重复上一次移动到指定字符操作</td>
+</tr>
+<tr>
+<td>,</td>
+<td>往相反的方向重复上一次移动到指定字符的操作</td>
+</tr>
+</tbody></table>
+<h3 id = "2.2.5"> 移动到指定的字符串 </h3>
+
+<p><strong>以下命令属于命令模式的命令，并非普通模式</strong></p>
+<p>下表中的<code>abcd</code>可以替换为任意字符串（支持中文）</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;<code>abcd</code></td>
+<td>将光标移动到其所在处的下一个<code>abcd</code>的开头</td>
+</tr>
+<tr>
+<td>?<code>abcd</code></td>
+<td>将光标移动到其所在处的上一个<code>abcd</code>的开头</td>
+</tr>
+<tr>
+<td>n</td>
+<td>重复上一次移动到指定字符串的操作</td>
+</tr>
+<tr>
+<td>N</td>
+<td>往相反的方向重复上一次移动到指定字符串的操作</td>
+</tr>
+</tbody></table>
+<h3 id = "2.2.6"> 括号匹配 </h3>
+
+<p>按下 ‘%’ 将会将光标移动到匹配的括号上，<br>当光标在’()’，’[]’，’{}’上时，会移动到与其匹配的另一半括号上。<br>当光标不在括号上时，会将光标移动到其之后最近的一组括号上。</p>
+<h3 id = "2.2.7"> 位置标记 </h3>
+
+<p>下表中<code>a</code>可以替换为任意大小写英文字母，<br>因此，最多可以使用52个位置标记。</p>
+<p><strong>小写字母的标记限定在当前文档内使用，而大写字母的位置标记可以跨文件进行跳转</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>m<code>a</code></td>
+<td>将位置标记<code>a</code>放置在光标所在位置</td>
+</tr>
+<tr>
+<td>‘<code>a</code></td>
+<td>将光标跳转到位置标记<code>a</code>所在的行首</td>
+</tr>
+<tr>
+<td>`<code>a</code></td>
+<td>将光标跳转到位置标记<code>a</code>所在的位置</td>
+</tr>
+<tr>
+<td>‘<code>&#39;</code></td>
+<td>将光标跳转到上一次进行<code>跳转</code>的位置的行首</td>
+</tr>
+<tr>
+<td>`<code>&#39;</code></td>
+<td>将光标跳转到上一次进行<code>跳转</code>的位置</td>
+</tr>
+<tr>
+<td>‘<code>.</code></td>
+<td>将光标跳转到上一次进行<code>改变</code>的位置的行首</td>
+</tr>
+<tr>
+<td>`<code>.</code></td>
+<td>将光标跳转到上一次进行<code>改变</code>的位置</td>
+</tr>
+<tr>
+<td>‘<code>^</code></td>
+<td>将光标跳转到上一次进行<code>插入</code>的位置的行首</td>
+</tr>
+<tr>
+<td>`<code>^</code></td>
+<td>将光标跳转到上一次进行<code>插入</code>的位置</td>
+</tr>
+</tbody></table>
+<h2 id = "2.3"> 普通模式下对文本进行操作 </h2>
+
+<p>在Vim中对文本进行操作满足“动宾”这种语法，<br>也就是先输入动作，再输入操作对象，Vim就会对对象执行用户输入的动作。<br>在介绍动作之前，先来介绍一下文本对象吧。</p>
+<h3 id = "2.3.1"> 文本对象 </h3>
+
+<p>在前面的 [单词间移动] 这个小节中，我介绍了Vim的两种单词，这个单词是Vim中的文本对象之一，但是不完整。<br>Vim的文本对象还需要加上一个修饰语：<code>&#39;a&#39;</code> 和 <code>&#39;i&#39;</code>。<br>其中 <code>&#39;a&#39;</code> 表示 <code>&quot;an&quot;</code>， <code>&#39;i&#39;</code> 表示 <code>&quot;inner&quot;</code>。<br>使用 <code>&#39;a&#39;</code> 修饰的对象会包括文本开头和结尾的空白或者括号，引号等，<br>使用 <code>&#39;i&#39;</code> 修饰的对象则不包含这一部分。</p>
+<p>常用对象如表所示。</p>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>aw</td>
+<td>表示一个<code>word</code>，且包含<code>word</code>开头和结尾的各一个空格</td>
+</tr>
+<tr>
+<td>iw</td>
+<td>表示一个<code>word</code>，不包含空格</td>
+</tr>
+<tr>
+<td>aW</td>
+<td>表示一个<code>WORD</code>，且包含<code>word</code>开头和结尾的各一个空格</td>
+</tr>
+<tr>
+<td>iW</td>
+<td>表示一个<code>WORD</code>，不包含空格</td>
+</tr>
+<tr>
+<td>a( 或 a)</td>
+<td>表示一段由 “()” 包括起来的文字，包含括号</td>
+</tr>
+<tr>
+<td>i( 或 i)</td>
+<td>表示一段由 “()” 包括起来的文字，不包含括号</td>
+</tr>
+<tr>
+<td>a[ 或 a]</td>
+<td>表示一段由 “[]” 包括起来的文字，包含括号</td>
+</tr>
+<tr>
+<td>i[ 或 i]</td>
+<td>表示一段由 “[]” 包括起来的文字，不包含括号</td>
+</tr>
+<tr>
+<td>a{ 或 a}</td>
+<td>表示一段由 “{}” 包括起来的文字，包含括号</td>
+</tr>
+<tr>
+<td>i{ 或 i}</td>
+<td>表示一段由 “{}” 包括起来的文字，不包含括号</td>
+</tr>
+<tr>
+<td>a&lt; 或 a&gt;</td>
+<td>表示一段由 “&lt;&gt;” 包括起来的文字，包含括号</td>
+</tr>
+<tr>
+<td>i&lt; 或 i&gt;</td>
+<td>表示一段由 “&lt;&gt;” 包括起来的文字，不包含括号</td>
+</tr>
+<tr>
+<td>a”</td>
+<td>表示一段由 “ “ ” 包括起来的文字，包含引号</td>
+</tr>
+<tr>
+<td>i”</td>
+<td>表示一段由 “ “ ” 包括起来的文字，不包含引号</td>
+</tr>
+<tr>
+<td>a’</td>
+<td>表示一段由 “ ‘ ” 包括起来的文字，包含引号</td>
+</tr>
+<tr>
+<td>i’</td>
+<td>表示一段由 “ ‘ ” 包括起来的文字，不包含引号</td>
+</tr>
+<tr>
+<td>a`</td>
+<td>表示一段由 “ ` ” 包括起来的文字，包含引号</td>
+</tr>
+<tr>
+<td>i`</td>
+<td>表示一段由 “ ` ” 包括起来的文字，不包含引号</td>
+</tr>
+</tbody></table>
+<h3 id = "2.3.2"> 删除/修改/拷贝动作 </h3>
+
+<p>Vim中，删除&#x2F;修改&#x2F;拷贝的动作命令分别是d(delete)&#x2F;c(change)&#x2F;y(yank)。</p>
+<p>在动作命令后面加上文本对象，即可对对象进行动作，<br>例如”da(“命令，将会将光标所在位置的括号内的文本及括号删除。</p>
+<p>除了文本对象，动作命令后面还可以接上光标移动命令，<br>例如，<br>“d3h”会将光标前3个字符删除，<br>“dgg”会将光标所在位置到首行的所有字符删除，<br>“d`a”会将光标光标所在位置到位置标志<code>a</code>所在位置之间的字符删除。</p>
+<p>总而言之，动作命令之后接着的就是文本范围，Vim会对范围内的字符执行指定的动作。<br>但有一个例外，当使用可视模式时，是先在可视模式下选定动作执行的范围，最后在输入动作。</p>
+<p>由于它们的使用方法基本一致，因此下表中仅列出删除命令，<br>其他修改和拷贝仅需替换命令即可。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>n</code>dd</td>
+<td>删除<code>n</code>行</td>
+</tr>
+<tr>
+<td><code>n</code>dw</td>
+<td>删除<code>n</code>个 word 文本对象</td>
+</tr>
+<tr>
+<td><code>n</code>diw</td>
+<td>删除<code>n</code>个 iw 文本对象（其他文本对象不再列出）</td>
+</tr>
+<tr>
+<td>d$</td>
+<td>从光标位置到行尾的文字全部删除</td>
+</tr>
+<tr>
+<td>d^</td>
+<td>从光标位置到本行第一个非空字符的文字全部删除</td>
+</tr>
+<tr>
+<td>d0</td>
+<td>从光标位置到本行行首的文字全部删除</td>
+</tr>
+<tr>
+<td>d<code>n</code>f<code>a</code></td>
+<td>从光标位置到本行光标之后第<code>n</code>个<code>a</code>的文字全部删除（其他移动光标的命令不再列出）</td>
+</tr>
+</tbody></table>
+<h3 id = "2.3.3"> 粘贴动作 </h3>
+
+<p>粘贴动作的命令是 p(paste)。<br>粘贴命令会将寄存器中存储的内容插入到光标之后，<br>如果寄存器中存储的内容是一行或多行文字，则会插入到光标所在行的下一行。<br>粘贴动作之前也可以加上数字表示要把粘贴动作重复几次。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>n</code>p</td>
+<td>将寄存器中存储的内容向光标后插入<code>n</code>次</td>
+</tr>
+<tr>
+<td><code>n</code>P</td>
+<td>将寄存器中存储的内容向光标前插入<code>n</code>次</td>
+</tr>
+</tbody></table>
+<p>未完待续…</p>
+<img src="https://www.runoob.com/wp-content/uploads/2015/10/vi-vim-cheat-sheet-sch1.gif"> 
+
+<p>图片来源：<a target="_blank" rel="noopener" href="http://cenalulu.github.io/linux/all-vim-cheatsheat/">http://cenalulu.github.io/linux/all-vim-cheatsheat/</a></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 INSS 小车车
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;INSSRumia/没有⑩怎么学数学
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+
+    <!--为网页添加背景音乐-->
+    <audio controls class = "musicController" loop autoplay="true">
+    <source src="/music/flap+frog - creamydream.mp3" type="audio/mpeg">
+    </audio>
+</body>
+</html>
