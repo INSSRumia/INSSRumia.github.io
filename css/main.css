@@ -29,7 +29,7 @@
 #archives .categories-tags span a:hover {
     background: #fff !important;
     border: #a5c2f5 1px solid;
-    color: #5c6b72;
+    color: #506050;
 }
 #archives .category,
 #archives .tags .tag,
@@ -64,14 +64,14 @@
     width: 100%;
 }
 #footer #footer-icon {
-    color: #66afef;
+    color: #a8c5a8;
     display: inline-block;
     font-size: 18px;
     margin: 0 10px;
 }
 #footer #footer-wrap {
     border-top: 1px solid #aaa;
-    color: #5c6b72;
+    color: #506050;
     margin: auto;
     width: 900px;
 }
@@ -125,7 +125,7 @@
 }
 #home-card #card-div .friend-links a {
     border-radius: 5px;
-    color: #5c6b72;
+    color: #506050;
     display: block;
     padding: 8px 0;
 }
@@ -134,14 +134,14 @@
 }
 #home-card #card-div .icon-links a {
     border-radius: 5px;
-    color: #5c6b72;
+    color: #506050;
     font-size: 18px;
     padding: 5px;
 }
 #home-card #card-div .icon-links a:hover,
 #home-card #card-div .friend-links a:hover,
 #home-posts .page-current .page-num:hover {
-    background: #66afef;
+    background: #d1e8c5;
     color: #fff;
 }
 #home-card #card-div .icon-links,
@@ -183,28 +183,28 @@
     animation: loop1 10s linear infinite;
     background: #fff;
     border-radius: 38% 62% 63% 37%/41% 44% 56% 59%;
-    opacity: 0.3;
+    opacity: 0.2;
     transform: rotate(30deg);
 }
 #home-head #home-info .loop:nth-child(2) {
     animation: loop2 15s linear infinite;
     background: #fff;
     border-radius: 38% 62% 63% 37%/41% 44% 56% 59%;
-    opacity: 0.45;
+    opacity: 0.3;
     transform: rotate(60deg);
 }
 #home-head #home-info .loop:nth-child(3) {
     animation: loop3 10s linear infinite;
     background: #fff;
     border-radius: 38% 62% 63% 37%/41% 44% 56% 59%;
-    opacity: 0.3;
+    opacity: 0.2;
     transform: rotate(90deg);
 }
 #home-head #home-info .loop:nth-child(4) {
     animation: loop4 15s linear infinite;
     background: #fff;
     border-radius: 38% 62% 63% 37%/41% 44% 56% 59%;
-    opacity: 0.45;
+    opacity: 0.3;
     transform: rotate(120deg);
 }
 #home-head #home-info,
@@ -222,7 +222,7 @@
 }
 #home-posts .page-current .current {
     border-radius: 5px;
-    color: #da0a51;
+    color: #a8c5a8;
     display: inline-block;
     height: 35px;
     line-height: 35px;
@@ -250,7 +250,7 @@
     transition: box-shadow 0.25s, transform 0.25s;
 }
 #home-posts .post .category-and-date {
-    color: #5c6b72;
+    color: #506050;
     margin-top: 15px;
     text-align: center;
     width: 100%;
@@ -265,7 +265,7 @@
 #archives .item-time,
 #archives .categories-tags span a:hover .icon,
 .article .info a {
-    color: #5c6b72;
+    color: #506050;
 }
 #home-posts .post .category-and-date .date,
 #archives .tags,
@@ -277,7 +277,7 @@
     margin-left: 25px;
 }
 #home-posts .post .go-post {
-    background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%);
+    background: linear-gradient(120deg, #b7ecb7 0%, #ffb9c2 100%);
     border: 0;
     border-radius: 20px 0;
     bottom: -5px;
@@ -308,7 +308,7 @@
     line-height: 1.7;
 }
 #home-posts .post-title {
-    color: #66afef;
+    color: #a8c5a8;
     text-align: center;
 }
 #home-posts .post:hover {
@@ -353,7 +353,7 @@
 }
 #loading-circle {
     align-items: center;
-    border: 10px solid #a3ddfb;
+    border: 10px solid #d1e8c5;
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -367,7 +367,7 @@
     margin-right: calc(100% - 100vw);
 }
 #menu {
-    background: #92cafa;
+    background: #d1e8c5;
     box-shadow: 0 -1px 10px 0 #9e9e9e4d;
     font-weight: bold;
     line-height: 50px;
@@ -464,7 +464,7 @@
     margin: 0;
     padding: 0;
     position: relative;
-    scrollbar-color: #8ab5ff #e6efff;
+    scrollbar-color: #ff8899 #ff889a28;
     scrollbar-width: thin;
     word-wrap: break-word;
 }
@@ -478,7 +478,7 @@
     margin: 50px 0;
 }
 .article .info .date {
-    color: #5c6b72;
+    color: #506050;
     display: inline-block;
     margin-right: 10px;
 }
@@ -505,7 +505,7 @@ body::-webkit-scrollbar-track {
     max-width: 75%;
 }
 .copycode {
-    color: #5c6b72;
+    color: #506050;
     position: absolute;
     right: 0;
     top: 0;
@@ -543,7 +543,7 @@ body::-webkit-scrollbar-track {
     vertical-align: top;
 }
 .icon {
-    color: #5c6b72;
+    color: #506050;
     margin-right: 5px;
 }
 .input {
@@ -579,9 +579,9 @@ body::-webkit-scrollbar-track {
     white-space: normal !important;
 }
 .language {
-    background: linear-gradient(to right, #ed6ea0 0%, #ec8c69 100%);
+    background: linear-gradient(to right, #ed6ea0 0%, #ff8899 100%);
     border-radius: 0 0 10px 10px;
-    box-shadow: 1px 1px 0.75rem #ed6ea14d;
+    box-shadow: 1px 1px 0.75rem #ff88994d;
     color: #fff;
     font-size: 12px;
     font-weight: bold;
@@ -662,7 +662,7 @@ body::-webkit-scrollbar-track {
     color: unset;
 }
 a {
-    color: #66afef;
+    color: #a8c5a8;
     text-decoration: none;
 }
 a:hover,
@@ -693,8 +693,8 @@ strong {
     line-height: 2.5;
 }
 blockquote {
-    background: #d9e8ff6b;
-    border-left: 3px solid #1e3e3f;
+    background: #d1e8c533;
+    border-left: 3px solid #778877;
     border-radius: 3px;
     margin: 15px 0;
     overflow: auto;
@@ -702,13 +702,13 @@ blockquote {
 }
 body {
     background: #f6f8fa;
-    color: #1e3e3f;
+    color: #506050;
     font: 500 14px Lexend, "Noto Sans SC", sans-serif;
     overflow-x: hidden;
     width: 100%;
 }
 code {
-    background: #bddcf76b;
+    background: #ff88996b;
     border-radius: 4px;
     line-height: 2.5;
     padding: 4px 8px;
@@ -719,7 +719,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: #1e3e3f;
+    color: #506050;
     font-weight: bold;
     margin: 15px 0;
     word-break: keep-all;
@@ -784,13 +784,13 @@ table:not(.hljs-ln) {
     margin: 15px 0;
 }
 table:not(.hljs-ln) td:nth-child(even) {
-    background: #c7e0fb4d;
+    background: #d1e8c54d;
 }
 table:not(.hljs-ln) td:nth-child(odd) {
-    background: #d9e8ff4d;
+    background: #e6f1e04d;
 }
 table:not(.hljs-ln) th {
-    background: #a3ddfb;
+    background: #d1e8c5;
 }
 table:not(.hljs-ln) tr th,
 table:not(.hljs-ln) tr td {
@@ -835,6 +835,7 @@ ol li {
 }
 @media (min-width: 900px) {
     #home-head #home-info .info .wrap {
+        margin-top: 250px;
         padding: 25px;
     }
     #home-head #home-info .info .wrap h1 {
@@ -852,9 +853,11 @@ ol li {
     }
     #home-head #home-info .loop {
         display: inline-block;
-        height: 500px;
+        height: 400px;
+        width: 400px;
+        margin-top: 175px;
+        margin-left: 50px;
         position: absolute;
-        width: 500px;
     }
     #home-head #home-info,
     #home-head #home-info .info {
