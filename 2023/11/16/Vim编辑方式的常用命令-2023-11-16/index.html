@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>Vim编辑方式的常用命令(2023.11.16) | INSS 黄瓜田</title>
+    <title>Vim编辑方式的常用命令(2023.11.16)(这辈子都更不完啦!) | INSS 黄瓜田</title>
     <meta name="author" content="INSSRumia/没有⑩怎么学数学" />
     <meta name="description" content="我从来没觉得种黄瓜开心过......" />
     <meta name="keywords" content="" />
@@ -171,7 +171,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>Vim编辑方式的常用命令(2023.11.16)</h1>
+        <h1>Vim编辑方式的常用命令(2023.11.16)(这辈子都更不完啦!)</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -199,7 +199,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/Vim/" style="color: #ff7d73">Vim</a>
+                <a href="/tags/Vim/" style="color: #ffa2c4">Vim</a>
             </span>
             
         </span>
@@ -211,7 +211,26 @@
 <p><a href="#0">前言</a></p>
 <p><a href="#1">Vim的模式</a></p>
 <p>-<a href="#1.1">普通模式</a></p>
+<p>-<a href="#1.2">插入模式</a></p>
+<p>-<a href="#1.3">可视模式</a></p>
+<p>-<a href="#1.4">命令模式</a></p>
+<p><a href="#2">普通模式常用命令</a></p>
+<p>-<a href="#2.1">普通模式进入插入模式</a></p>
+<p>-<a href="#2.2">普通模式下移动光标</a></p>
+<p>–<a href="#2.2.1">方向键的替换者</a></p>
+<p>–<a href="#2.2.2">单词间移动</a></p>
+<p>–<a href="#2.2.3">行列移动</a></p>
+<p>–<a href="#2.2.4">移动到指定字符</a></p>
+<p>–<a href="#2.2.5">移动到指定字符串(命令模式)</a></p>
+<p>–<a href="#2.2.6">括号匹配</a></p>
+<p>–<a href="#2.2.7">位置标记</a></p>
+<p>-<a href="#2.3">普通模式下对文本进行操作</a></p>
+<p>–<a href="#2.3.1">文本对象</a></p>
+<p>–<a href="#2.3.2">删除&#x2F;修改&#x2F;拷贝动作</a></p>
+<p>–<a href="#2.3.3">粘贴动作</a></p>
+<p>–<a href="#2.3.4">寄存器</a></p>
 <h1 id = "0"> 前言 </h1>
+
 
 <p>本文只是个人在学习和使用Vim编辑方式的笔记，本人暂时没有深入使用过原生的Vim，以下所有内容都是在VSCode和VS的Vim插件下适用。</p>
 <h1 id = "1"> Vim的模式 </h1>
@@ -722,6 +741,92 @@
 <td>将寄存器中存储的内容向光标前插入<code>n</code>次</td>
 </tr>
 </tbody></table>
+<h3 id = "2.3.4"> 寄存器 </h3>
+
+<p>寄存器是Vim提供的一组容器，用户可以往容器中存储和读取内容。<br>在普通模式下，寄存器的使用规则很简单，首先输入<code>&quot;</code>表示要指定寄存器，<br>然后输入寄存器的名称，最后再输入普通模式的命令。</p>
+<p>例如将一行文字拷贝到寄存器<code>a</code>中的完整命令是：<code>&quot;ayy</code>。</p>
+<p>Vim中共有9种寄存器，下文将依次介绍。</p>
+<blockquote>
+<p><strong>“” 无名寄存器：</strong> </p>
+<p>最常用的寄存器，它会自动记录用户最近的删除和拷贝的内容。<br>无论是否指定寄存器，拷贝和删除的内容都会存储到该寄存器中。</p>
+<p>在不指定寄存器时，粘贴动作都是插入该寄存器中存储的内容。</p>
+</blockquote>
+<blockquote>
+<p><strong>“[0~9] 数字寄存器：</strong> </p>
+<p>当用户拷贝时未指定寄存器，数字寄存器<code>0</code>会存储用户最近的一次拷贝的内容，<br><code>无论拷贝的内容是否包含换行符（这个很重要，和其他的数字寄存器存在区别）</code>。</p>
+<p>当用户进行删除时指定的寄存器不是黑洞寄存器时，<br>数字寄存器<code>1~9</code>会存储用户最近9次删除的内容，<br>寄存器<code>1</code>中存储的一定是最近的一次删除，当用户下一次进行删除时，<br>寄存器<code>1</code>中的内容会存储到寄存器<code>2</code>，寄存器<code>2</code>中的内容会存储到寄存器<code>3</code>，以此类推直到寄存器<code>9</code>。</p>
+<p>需要注意的是，只有当删除的内容包含换行时，该内容才会存入数字寄存器<code>1~9</code>，<br>反之则会被存入短删除寄存器<code>-</code>。</p>
+<p><strong>例如：</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>eg.1</strong></p>
+<blockquote>
+<p>&#x2F;&#x2F;删除前</p>
+<p><code>abcdefghijklmn</code></p>
+<p>opqrstuvwxyz</p>
+<p>&#x2F;&#x2F;使用<code>dd</code>删除后</p>
+<p>opqrstuvwxyz</p>
+</blockquote>
+<p>该情况删除的内容包含了换行（改变了文章的总行数），<br>删除的内容会被存入数字寄存器<code>1</code>。</p>
+</blockquote>
+<blockquote>
+<p><strong>eg.2</strong></p>
+<blockquote>
+<p>&#x2F;&#x2F;删除前</p>
+<p>abcdefghi<code>jklmn</code></p>
+<p><code>opqrst</code>uvwxyz</p>
+<p>&#x2F;&#x2F;使用可视模式删除后</p>
+<p>abcdefghiuvwxyz</p>
+</blockquote>
+<p>该情况删除的内容也包含了换行（改变了文章的总行数），<br>删除的内容会被存入数字寄存器<code>1</code>。</p>
+</blockquote>
+<blockquote>
+<p><strong>eg.3</strong></p>
+<blockquote>
+<p>&#x2F;&#x2F;删除前</p>
+<p><code>abcdefghijklmn</code></p>
+<p>opqrstuvwxyz</p>
+<p>&#x2F;&#x2F;使用<code>0d$</code>删除后</p>
+<p>(这里存在一个空行)</p>
+<p>opqrstuvwxyz</p>
+</blockquote>
+<p>该情况删除的内容不包含换行（未改变文章的总函数），<br>删除的内容会被存入短删除寄存器<code>-</code>。</p>
+</blockquote>
+<blockquote>
+<p><strong>“- 短删除寄存器：</strong> </p>
+<p>在用户删除时，不包含换行的删除内容就会被存储在该寄存器中。</p>
+<p>短删除寄存器只有一个，因此在进行短删除时，需要注意，<br>Vim只会为你存储最近的短删除内容。</p>
+</blockquote>
+<blockquote>
+<p><strong>“[a~Z] 字母寄存器：</strong> </p>
+<p>字母寄存器共有26个，大写和小写是同一个寄存器，但是在使用上存在差异。</p>
+<p>字母寄存器提供给用户指定来存储内容，当用户在储存内容时指定寄存器时使用小写字母，<br>则新的内容会覆盖寄存器中原有的内容。</p>
+<p>若用户使用的是大写字母，则新的内容会接续在旧内容的后面（包括宏的录制）。</p>
+</blockquote>
+<blockquote>
+<p><strong>“: “. “% “# 只读寄存器：</strong> </p>
+<p>寄存器 <code>:</code> 存储用户上一次在命令模式下输入的命令。（目前我还不清楚这个可以做什么）</p>
+<p>寄存器 <code>.</code> 存储用户上一次插入的内容。</p>
+<p>寄存器 <code>%</code> 存储当前正在编辑的文件名。</p>
+<p>寄存器 <code>#</code> 存储跳转到的下一个文件的文件名。<br>（Vim在打开多个文件后，可以通过<code>:n</code>命令在文件之间进行跳转，VS和VSC的Vim插件目前似乎不支持该命令）</p>
+</blockquote>
+<blockquote>
+<p><strong>“&#x3D; 表达式寄存器：</strong> </p>
+<p>还不会用…</p>
+</blockquote>
+<blockquote>
+<p><strong>“_ 黑洞寄存器：</strong></p>
+<p>器如其名，指定黑洞寄存器进行删除时，删除的内容不会存储到任意一个寄存器中，<br>会永久删除。</p>
+</blockquote>
+<blockquote>
+<p><strong>“&#x2F; 搜索样式寄存器：</strong></p>
+<p>该寄存器存储用户上一次使用<code>/</code>命令进行搜索时的搜索内容。</p>
+</blockquote>
+<blockquote>
+<p><strong>“* “+ “~ 选择与拖放寄存器寄存器：</strong></p>
+<p>当操作系统的剪切板可用时，寄存器<code>&quot;*</code>和<code>&quot;+</code>中会存储剪切板中最新的内容。</p>
+<p>当通过GUI界面拖拽一段内容到Vim中时，这段文字会存储在寄存器<code>&quot;~</code>中。<br>（VS和VSC试过好像不行，不知道是不是我操作有问题）</p>
+</blockquote>
 <p>未完待续…</p>
 <img src="https://www.runoob.com/wp-content/uploads/2015/10/vi-vim-cheat-sheet-sch1.gif"> 
 
